@@ -1,0 +1,66 @@
+<html>
+  <head >
+    <style>
+      div {
+        background-color:black;
+        width:2px;
+        height:2px;
+        position:absolute;
+        left:0;
+        top:0;
+      }
+    </style>
+  </head>
+  <body onkeyup="reset()">
+    <p id="xcord"></p><p id="ycord"></p>
+    <p id="xmomen"></p><p id="ymomen"></p>
+    <div></div>
+    <script>
+    //w = 119
+    //a = 97
+    //s = 115
+    //d = 100
+      var key;
+      var x = 0;
+      var y = 0;
+      var xMome = 0;
+      var yMome = 0;
+      
+      function reset() {
+        xMome = 0;
+        yMome = 0;
+        document.getElementById('xmomen').innerHTML = "Xspeed: " + xMome;
+        document.getElementById('ymomen').innerHTML = "Yspeed: " + yMome;
+      }
+      document.body.addEventListener('keypress', function(use) {
+        key = use.keyCode;
+        
+        
+        if (key === 119) {
+          yMome = yMome + 1;
+          y = y - yMome;
+          document.getElementsByTagName('div')[0].style.top = y;
+        }
+        if (key === 97) {
+          xMome = xMome + 1;
+          x = x - xMome;
+          document.getElementsByTagName('div')[0].style.left = x;
+        }
+        if (key === 115) {
+          yMome = yMome + 1;
+          y = y + yMome;
+          document.getElementsByTagName('div')[0].style.top = y;
+        }
+        if (key === 100) {
+          xMome = xMome + 1;
+          x = x + xMome;
+          document.getElementsByTagName('div')[0].style.left = x;
+        }
+        document.getElementById('xcord').innerHTML = "X: " + x;
+        document.getElementById('ycord').innerHTML = "Y: " + y;
+        document.getElementById('xmomen').innerHTML = "Xspeed: " + xMome;
+        document.getElementById('ymomen').innerHTML = "Yspeed: " + yMome;
+      });
+    </script>
+  </body>
+</html>
