@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <style>
+            button {
+                margin-top:5px;
+            }
+        </style>
+    </head>
+    <body>
+        <button onclick="rock()">Rock</button><br>
+        <button onclick="paper()">Paper</button><br>
+        <button onclick="scissors()">Scissors</button>
+        <p id="result">Result: </p>
+        <p id="prev">Last Computer Choice:</p>
+        <p id="scor"></p>
+        <script>
+            var cmptr = ["rock", "paper", "scissors"];
+            var rand = Math.floor(Math.random() * cmptr.length);
+            var cmptrChoice = cmptr[rand];
+            var plrScor = 0;
+            var comScor = 0;
+            document.getElementById('scor').innerHTML = plrScor + " - " + comScor;
+
+            function rock() {
+                if (cmptrChoice === "rock") {
+                    document.getElementById('result').innerHTML = "Result: Tie";
+                }
+                else if (cmptrChoice === "paper") {
+                    document.getElementById('result').innerHTML = "Result: You Lose";
+                    comScor++;
+                }
+                else if (cmptrChoice === "scissors") {
+                    document.getElementById('result').innerHTML = "Result: You Win";
+                    plrScor++;
+                }
+                reset();
+            }
+            function paper() {
+                if (cmptrChoice === "rock") {
+                    document.getElementById('result').innerHTML = "Result: You Win";
+                    plrScor++;
+                }
+                else if (cmptrChoice === "paper") {
+                    document.getElementById('result').innerHTML = "Result: Tie";
+                }
+                else if (cmptrChoice === "scissors") {
+                    document.getElementById('result').innerHTML = "Result: You Lose";
+                    comScor++;
+                }
+                reset();
+            }
+            function scissors() {
+                if (cmptrChoice === "rock") {
+                    document.getElementById('result').innerHTML = "Result: You Lose";
+                    comScor++;
+                }
+                else if (cmptrChoice === "paper") {
+                    document.getElementById('result').innerHTML = "Result: You Win";
+                    plrScor++;
+                }
+                else if (cmptrChoice === "scissors") {
+                    document.getElementById('result').innerHTML = "Result: Tie";
+                }
+                reset();
+            }
+            function reset() {
+                document.getElementById('prev').innerHTML = "Last Computer Choice: " + cmptrChoice;
+                rand = Math.floor(Math.random() * cmptr.length);
+                cmptrChoice = cmptr[rand];
+                document.getElementById('scor').innerHTML = plrScor + " - " + comScor;
+            }
+        </script>
+    </body>
+</html>
