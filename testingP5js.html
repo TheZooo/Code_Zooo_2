@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+  </head>
+  <body>
+    
+    
+    <script>
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var r;
+    var g;
+    var b;
+      function setup() {
+        createCanvas(w,h);
+        r = random(256);
+        g = random(256);
+        b = random(256);
+      }
+      
+      function draw() {
+        background(200,200,200);
+        fill(r,g,b);
+        strokeWeight(0);
+        ellipse(mouseX,mouseY,80,80);
+        
+        fill(color("blue"));
+        rect(w/2,h/2,100,100);
+        
+        fill(20);
+	      arc(mouseX,mouseY,40,40,0,HALF_PI);
+	      fill(40);
+	      arc(mouseX,mouseY,40,40,HALF_PI,PI);
+	      fill(60);
+	      arc(mouseX,mouseY,40,40,PI, TWO_PI - HALF_PI);
+	      fill(80);
+	      arc(mouseX,mouseY,40,40,PI + HALF_PI, TWO_PI);
+      }
+    </script>
+  </body>
+</html>

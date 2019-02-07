@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+  </head>
+  <body>
+    <p id="test"></p>
+    <script>
+    //ORIGINALLY BY HOWARD KAM
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var speed = 10;
+      var diameter = 20;
+      var colorChange = 500;
+      var x;
+      var y;
+      var r;
+      var g;
+      var b;
+      var i = 0;
+      
+      function setup() {
+        createCanvas(w, h);
+        x = width/2;
+        y = height/2;
+        r = random(256);
+        g = random(256);
+        b = random(256);
+      }
+      
+      function draw() {
+        document.getElementById('test').innerHTML = "Color change in: " + i;
+        if (i < colorChange) {
+          i++;
+        }
+        else {
+          r = random(256);
+          g = random(256);
+          b = random(256);
+          i = 0;
+        }
+        fill(r,g,b);
+        x += random(-speed, speed);
+        y += random(-speed, speed);
+        if (mouseIsPressed) {
+          x = mouseX;
+          y = mouseY;
+        }
+        ellipse(x, y, diameter, diameter);
+      }
+    </script>
+  </body>
+</html>
