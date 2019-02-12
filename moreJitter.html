@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      var w = window.innerWidth-17;
+      var h = window.innerHeight-17;
+      /*
+      var posX1 = w/2;
+      var posY1 = h/2;
+      var posX2 = w/2;
+      var posY2 = h/2
+      var ellp = 50;
+      var squa = 50;
+      */
+      var posX = [];
+      var posY = [];
+      var r = [];
+      var g = [];
+      var b = [];
+      var maxSpeed = 8;
+      var minSpeed = -8;
+      var test = Number(prompt("Type a number"));
+      if (typeof test !== "number") {
+        window.alert("This isn't a number");
+      } else {
+        var amt = test;
+      }
+      var baseSize = 10;
+      var i = 0;
+      var ii = 0;
+      
+      function setup() {
+        createCanvas(w,h);
+      }
+      
+      function draw() {
+        for (i;i < amt;i++) {
+          var rGen = random(0,256);
+          var gGen = random(0,256);
+          var bGen = random(0,256);
+          r.push(rGen);
+          g.push(gGen);
+          b.push(bGen);
+          posX.push(w/2);
+          posY.push(h/2);
+        }
+        for (ii;ii < amt;ii++) {
+          fill(r[ii],g[ii],b[ii]);
+          strokeWeight(1);
+          ellipse(posX[ii],posY[ii],baseSize,baseSize);
+          if (posX[ii] < baseSize) {
+            posX[ii] += random(0,maxSpeed);
+          } else if (posX[ii] > w - baseSize) {
+            posX[ii] += random(minSpeed,1);
+          } else {
+            posX[ii] += random(minSpeed,maxSpeed);
+          }
+          if (posY[ii] < baseSize) {
+            posY[ii] += random(0,maxSpeed);
+          } else if (posY[ii] > h - baseSize) {
+            posY[ii] += random(minSpeed,1);
+          } else {
+            posY[ii] += random(minSpeed,maxSpeed);
+          }
+        }
+        ii = 0;
+      }
+    </script>
+  </body>
+</html>
