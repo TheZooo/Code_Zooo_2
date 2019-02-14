@@ -39,18 +39,18 @@
       }
       
       function keyPressed() {
-        if (keyCode == "38") {
+        if (keyCode == "38") { //up key increases stroke weight
           weight += 1;
         }
-        if (keyCode == "40" && weight > 0) {
+        if (keyCode == "40" && weight > 0) { //down key decreses stroke weight
           weight += -1;
         }
-        if (keyCode == "82") {
+        if (keyCode == "82") { //r key generates a random color
           r = Math.floor(random(256));
           g = Math.floor(random(256));
           b = Math.floor(random(256));
         }
-        if (keyCode == "80") {
+        if (keyCode == "80") { //p key clears the canvas
           clear();
         }
       }
