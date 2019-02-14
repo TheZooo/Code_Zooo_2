@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+    <style>
+      canvas {
+        position:absolute;
+        left:0;
+        top:0;
+      }
+      body {
+        background-image:url("https://static.vecteezy.com/system/resources/previews/000/129/669/non_2x/vector-natural-paper-texture-background.jpg");
+        background-size:cover;
+        background-repeat:norepeat;
+      }
+    </style>
+  </head>
+  <body>
+    <span id="control">Up and down arrow keys to change weight, R key for random color, P key to clear</span><br><span id="dis"></span><span id="col"></span>
+    <script>
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var weight = 1;
+      var r = 100;
+      var g = 100;
+      var b = 100;
+      
+      function setup() {
+        createCanvas(w,h);
+      }
+      
+      function draw() {
+        if (mouseIsPressed) {
+          strokeWeight(weight);
+          stroke(r,g,b);
+          line(mouseX,mouseY,pmouseX,pmouseY);
+        }
+        document.getElementById('dis').innerHTML = "Stroke Weight: " + weight + ";  ;";
+        document.getElementById('col').innerHTML = "Color: " + r + "," + g + "," + b;
+      }
+      
+      function keyPressed() {
+        if (keyCode == "38") {
+          weight += 1;
+        }
+        if (keyCode == "40" && weight > 0) {
+          weight += -1;
+        }
+        if (keyCode == "82") {
+          r = Math.floor(random(256));
+          g = Math.floor(random(256));
+          b = Math.floor(random(256));
+        }
+        if (keyCode == "80") {
+          clear();
+        }
+      }
+    </script>
+  </body>
+</html>
