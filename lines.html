@@ -6,54 +6,109 @@
         position:absolute;
         left:0;
         top:0;
+        z-index:-1;
       }
       body {
         background-image:url("https://static.vecteezy.com/system/resources/previews/000/129/669/non_2x/vector-natural-paper-texture-background.jpg");
         background-size:cover;
         background-repeat:norepeat;
       }
+      input {
+        width:50px;
+        margin-left:2px;
+      }
     </style>
   </head>
   <body>
-    <span id="control">Up and down arrow keys to change weight, R key for random color, P key to clear</span><br><span id="dis"></span><span id="col"></span>
+    <h2 id="control">Up and down arrow keys to change weight, P key to clear, enter to submit the color input below</h2>
+    <span id="dis"></span>
+    <span id="col">Color:</span>
+    <span>R:</span><input id="red" type="number" onfocus="dothething()" onblur="deselect()">
+    <span>G:</span><input id="green" type="number" onfocus="dothething()" onblur="deselect()">
+    <span>B:</span><input id="blue" type="number" onfocus="dothething()" onblur="deselect()">
+    <p id="test"></p>
     <script>
       var w = window.innerWidth;
       var h = window.innerHeight;
       var weight = 1;
-      var r = 100;
-      var g = 100;
-      var b = 100;
+      var checkBox = false;
+      var r = 0;
+      var g = 0;
+      var b = 0;
       
       function setup() {
         createCanvas(w,h);
+        document.getElementById('red').value = 0;
+        document.getElementById('green').value = 0;
+        document.getElementById('blue').value = 0;
+      }
+      
+      function dothething() {
+        checkBox = true;
+      }
+      
+      function deselect() {
+        checkBox = false;
       }
       
       function draw() {
+        var redIn = document.getElementById('red').value;
+        var greenIn = document.getElementById('green').value;
+        var blueIn = document.getElementById('blue').value;
+        
         if (mouseIsPressed) {
           strokeWeight(weight);
           stroke(r,g,b);
           line(mouseX,mouseY,pmouseX,pmouseY);
         }
-        document.getElementById('dis').innerHTML = "Stroke Weight: " + weight + ";  ;";
-        document.getElementById('col').innerHTML = "Color: " + r + "," + g + "," + b;
+        
+        if (redIn < 0) {
+          document.getElementById('red').value = 0;
+        } else if (redIn > 255) {
+          document.getElementById('red').value = 255;
+        } else if (redIn == "") {
+          document.getElementById('red').value = 0;
+        }
+        if (greenIn < 0) {
+          document.getElementById('green').value = 0;
+        } else if (greenIn > 255) {
+          document.getElementById('green').value = 255;
+        } else if (greenIn == "") {
+          document.getElementById('green').value = 0;
+        }
+        if (blueIn < 0) {
+          document.getElementById('blue').value = 0;
+        } else if (blueIn > 255) {
+          document.getElementById('blue').value = 255;
+        } else if (blueIn == "") {
+          document.getElementById('blue').value = 0;
+        }
+        
+        document.getElementById('dis').innerHTML = "Stroke Weight: " + weight + "; ;";
+        document.getElementById('col').innerHTML = "Color: " + r + " , " + g + " , " + b + "; ;";
       }
       
       function keyPressed() {
-        if (keyCode == "38") { //up key increases stroke weight
+        if (keyCode == "38" && checkBox == false) { //up key increases stroke weight
           weight += 1;
         }
-        if (keyCode == "40" && weight > 0) { //down key decreses stroke weight
+        if (keyCode == "40" && weight > 0 && checkBox == false) { //down key decreses stroke weight
           weight += -1;
         }
-        if (keyCode == "82") { //r key generates a random color
-          r = Math.floor(random(256));
-          g = Math.floor(random(256));
-          b = Math.floor(random(256));
+        if (keyCode == "13") { //enter key submits color
+          r = document.getElementById('red').value;
+          g = document.getElementById('green').value;
+          b = document.getElementById('blue').value;
+          document.getElementById('red').value = 0;
+          document.getElementById('green').value = 0;
+          document.getElementById('blue').value = 0;
         }
         if (keyCode == "80") { //p key clears the canvas
           clear();
         }
       }
+      
+      
     </script>
   </body>
 </html>
