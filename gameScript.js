@@ -5,10 +5,6 @@ var inputSize = prompt("10 - 150"); //Input size by prompt
 var inputSpeed = prompt("1 - 80"); //Input speed by prompt
 
 var rectSize = 30; //Squaring the rectangle Size
-var maxCapX = w - rectSize; //Stops the Rectangle from leaving to the right
-var minCapX = 0; //Stops left
-var maxCapY = h - rectSize; //Stops the Rectangle from leaving out the bottom
-var minCapY = 0; //Stops top
         
 var posX = 20; //X position of Rectangle
 var posY = 20; //Y position of Rectangle
@@ -35,6 +31,11 @@ if (inputSpeed < 1 || inputSpeed > 80) { //checks parameters of input
   speedCap = inputSpeed;
   baseSpeedCap = inputSpeed;
 }
+
+var maxCapX = w - rectSize; //Stops the Rectangle from leaving to the right
+var minCapX = 0; //Stops left
+var maxCapY = h - rectSize; //Stops the Rectangle from leaving out the bottom
+var minCapY = 0; //Stops top
         
 function setup() {
     createCanvas(w, h);
