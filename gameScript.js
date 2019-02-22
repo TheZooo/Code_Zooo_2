@@ -16,7 +16,7 @@ var ySpeed = 0; //Y speed
 
 var speedCap = 4; //speed cap for both speeds
 var baseSpeedCap = 4; //to reset the speed cap
-var sprintSpeed = baseSpeedCap + 4; //shift key speed
+
         
 var keyAction = [false,false,false,false];
 
@@ -32,6 +32,7 @@ if (inputSpeed < 1 || inputSpeed > 80) { //checks parameters of input
   baseSpeedCap = inputSpeed;
 }
 
+var sprintSpeed = baseSpeedCap + 4; //shift key speed
 var maxCapX = w - rectSize; //Stops the Rectangle from leaving to the right
 var minCapX = 0; //Stops left
 var maxCapY = h - rectSize; //Stops the Rectangle from leaving out the bottom
